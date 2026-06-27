@@ -1,3 +1,4 @@
+// 1. Efeito de Digitação no Título (Hero Section)
 function writeTitle(){
     const title = document.querySelector('.digitando');
     if(!title) return;
@@ -37,97 +38,130 @@ function writeTitle(){
 }
 writeTitle();
 
-
-
-
+// 2. Menu Mobile
 function menuMobile(){
     const activeMenu = document.querySelector('.fa-bars');
     const navMenu = document.querySelector('header .navegacao-primaria');
-    
+    if(!activeMenu || !navMenu) return;
     
     activeMenu.addEventListener('click',()=>{
         activeMenu.classList.toggle('fa-x');
         navMenu.classList.toggle('ativado');
     });
-
 }
 menuMobile();
 
-// Função aboutMe removida para dar lugar à nova Timeline Vertical
-
-const listAll = document.querySelectorAll('.projects_storage ul li');
-const buttomGeral = document.querySelectorAll('.projects_models ul li');
-const buttomAll = document.querySelectorAll('.projects_models .all');
-
-
-function removeClick(index){
-    buttomGeral.forEach((item)=>{
-        item.classList.remove('active');
-    });
-    buttomGeral[index].classList.add('active');
-}
-
-buttomGeral.forEach((item, index)=>{
-    item.addEventListener('click',()=>{
-        removeClick(index);
-    })
+// 3. Filtragem Dinâmica de Projetos (Orientada a Classes)
+function initProjectFilter(){
+    const filterButtons = document.querySelectorAll('.projects_models ul li');
+    const projectCards = document.querySelectorAll('.projects_storage ul li.project-card');
     
-})
-
-function showList(list, buttom = "all"){
-    list.forEach((item) =>{
-        item.classList.remove('active')
+    if (filterButtons.length === 0 || projectCards.length === 0) return;
+    
+    // Define o botão "All" como ativo por padrão no carregamento
+    const allBtn = document.querySelector('.projects_models ul li.all');
+    if (allBtn) allBtn.classList.add('active');
+    
+    filterButtons.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+            // Remove classe active de todos os botões e adiciona ao clicado
+            filterButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            // Pega a classe de filtro (ex: all, design, webSite)
+            const filter = e.target.className.split(' ')[0];
+            
+            projectCards.forEach(card => {
+                card.classList.remove('active');
+                card.style.display = 'none';
+                
+                if (filter === 'all' || card.classList.contains(filter)) {
+                    // Força um reflow para reiniciar as animações CSS
+                    void card.offsetWidth;
+                    card.style.display = 'flex';
+                    card.classList.add('active');
+                }
+            });
+        });
     });
-    if(buttom == 'design'){
-        list[0].classList.add('active');
-        list[1].classList.add('active');
-    }
-    if(buttom == 'graphic'){
-        list[2].classList.add('active');
-        list[3].classList.add('active');
-    }
-    if(buttom == 'webSite'){
-        list[4].classList.add('active');
-        list[5].classList.add('active');
-        list[6].classList.add('active');
-        list[7].classList.add('active');
-    }
-    if(buttom == 'all'){
-        list[0].classList.add('active');
-        list[1].classList.add('active');
-        list[2].classList.add('active');
-        list[3].classList.add('active');
-        list[4].classList.add('active');
-        list[5].classList.add('active');
-        list[6].classList.add('active');
-        list[7].classList.add('active');
-    }
 }
+initProjectFilter();
 
-buttomGeral.forEach((item)=>{
-    item.addEventListener('click', (e)=>{
-        let currentButtom = e.target
-        if(currentButtom.classList.contains('all')){
-            showList(listAll)
+// 4. Alternador de Tema (Dark / Light Mode)
+function initThemeToggle() {
+    const themeBtn = document.getElementById('theme-toggle');
+    if (!themeBtn) return;
+    
+    const icon = themeBtn.querySelector('i');
+    
+    // Verifica a preferência salva no localStorage
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+        document.body.classList.add('light-theme');
+        if (icon) {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
         }
-        if(currentButtom.classList.contains('design')){
-            showList(listAll, "design")
+    }
+    
+    themeBtn.addEventListener('click', () => {
+        document.body.classList.toggle('light-theme');
+        const isLight = document.body.classList.contains('light-theme');
+        
+        // Atualiza a preferência no localStorage
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        
+        // Altera o ícone do botão
+        if (icon) {
+            if (isLight) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
         }
-        if(currentButtom.classList.contains('graphic')){
-            showList(listAll, "graphic")
+    });
+}
+initThemeToggle();
+
+// 5. Integração com WhatsApp (Formulário de Contato Dinâmico)
+function initContactForm() {
+    const contactForm = document.getElementById('whatsapp-form');
+    if (!contactForm) return;
+    
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const nameVal = document.getElementById('form-name').value.trim();
+        const emailVal = document.getElementById('form-email').value.trim();
+        const messageVal = document.getElementById('form-message').value.trim();
+        
+        if (!nameVal || !emailVal || !messageVal) {
+            alert('Por favor, preencha todos os campos do formulário.');
+            return;
         }
-        if(currentButtom.classList.contains('webSite')){
-            showList(listAll, "webSite")
-        }
-        if(currentButtom.classList.contains('all')){
-            showList(listAll, "all")
-        }
-    })
-})
+        
+        const phone = "5511953937222"; // Seu número configurado
+        
+        // Monta a mensagem formatada para o WhatsApp
+        const formatMsg = `Olá Yago!\n\nMe chamo *${nameVal}* (${emailVal}).\n\n*Mensagem:*\n${messageVal}`;
+        
+        // Codifica a mensagem para a URL
+        const whatsappUrl = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(formatMsg)}`;
+        
+        // Abre o link do WhatsApp em uma nova aba
+        window.open(whatsappUrl, '_blank');
+        
+        // Limpa o formulário após o envio
+        contactForm.reset();
+    });
+}
+initContactForm();
 
 // === NOVAS FUNÇÕES (WOW FACTOR) ===
 
-// 1. Reveal on Scroll (Animações de entrada)
+// Reveal on Scroll (Animações de entrada)
 function revealOnScroll() {
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
@@ -144,9 +178,10 @@ function revealOnScroll() {
 }
 revealOnScroll();
 
-// 2. Header Glassmorphism (Menu Fixo e Transparente)
+// Header Glassmorphism (Menu Fixo e Transparente)
 window.addEventListener('scroll', () => {
     const header = document.querySelector('header');
+    if(!header) return;
     if (window.scrollY > 50) {
         header.classList.add('scrolled');
     } else {
@@ -154,7 +189,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// 3. Animate Skill Bars
+// Animate Skill Bars
 function animateSkills() {
     const skillBars = document.querySelectorAll('.skill-bar');
     const observer = new IntersectionObserver((entries) => {
@@ -164,7 +199,7 @@ function animateSkills() {
                 entry.target.style.width = width;
             }
         });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.2 });
 
     skillBars.forEach(bar => {
         observer.observe(bar);

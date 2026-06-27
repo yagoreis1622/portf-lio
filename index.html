@@ -31,14 +31,17 @@
 
     <header>
         <h1>Yago <span>Dev</span></h1>
-        <nav>
+        <nav style="display: flex; align-items: center; gap: 20px;">
             <ul aria-label="Navegação primaria" class="navegacao-primaria">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#sobre">Sobre</a></li>
                 <li><a href="#resumo">Resumo</a></li>
                 <li><a href="#Habilidades">Habilidades</a></li>
-                <li><a href="https://api.whatsapp.com/send?phone=55011953937222">Contato</a></li>
+                <li><a href="#contato">Contato</a></li>
             </ul>
+            <button id="theme-toggle" class="theme-toggle-btn" aria-label="Alternar tema" style="background: transparent; border: none; color: var(--text-color, #fff); font-size: 1.3rem; cursor: pointer; transition: color 0.3s ease; padding: 5px;">
+                <i class="fa-solid fa-moon"></i>
+            </button>
             <i class="fa-solid fa-bars"></i>
         </nav>
     </header>
@@ -46,9 +49,7 @@
         <div>
             <h2>Olá! Sou Yago</h2>
             <h2 class="digitando">Web Developer e UX/UI Design</h2>
-            <p>Sou formado em Sistemas de Informação, apaixonado por desenvolvimento web e design de interfaces. Busco
-                sempre evoluir como profissional, estudando tecnologias como JavaScript e React para criar experiências
-                digitais modernas, acessíveis e funcionais.</p>
+            <p>Sou desenvolvedor Front-end com formação em Sistemas de Informação e experiência em web design e criação de interfaces. Tenho atuação com HTML, CSS, JavaScript, WordPress e estudos em React, buscando desenvolver experiências digitais modernas, funcionais e centradas no usuário</p>
             <a href="img/yago.curriculo.pdf">Download CV</a>
         </div>
         <img src="img/photo.png" alt="ilustration image">
@@ -182,63 +183,97 @@
         </div>
         <div class="cursos" id="Habilidades">
             <div class="my_skills">
-                <h2><i class="fa-sharp fa-regular fa-star"></i>My Skills</h2>
-                <div class="skill_content">
-                    <h3>HTML5 <span>95%</span></h3>
-                    <div class="skill-bar-container">
-                        <div class="skill-bar" data-width="95%"></div>
+                <h2><i class="fa-sharp fa-regular fa-star"></i>Habilidades</h2>
+                
+                <div class="skills-grid">
+                    <!-- Categoria 1: Front-End -->
+                    <div class="skills-category">
+                        <h3><i class="fa-solid fa-laptop-code"></i> Front-End</h3>
+                        <div class="skill_content">
+                            <h3><span><i class="fa-brands fa-html5"></i> HTML5</span> <span>95%</span></h3>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar" data-width="95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill_content">
+                            <h3><span><i class="fa-brands fa-css3-alt"></i> CSS3 / Tailwind / Bootstrap</span> <span>90%</span></h3>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar" data-width="90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill_content">
+                            <h3><span><i class="fa-brands fa-js"></i> JavaScript</span> <span>80%</span></h3>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar" data-width="80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill_content">
+                            <h3><span><i class="fa-brands fa-react"></i> React</span> <span>50%</span></h3>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar" data-width="50%"></div>
+                            </div>
+                        </div>
+                        <div class="skill_content">
+                            <h3><span><i class="fa-solid fa-code"></i> TypeScript</span> <span>70%</span></h3>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar" data-width="70%"></div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="skill_content">
-                    <h3>CSS 3 <span>90%</span></h3>
-                    <div class="skill-bar-container">
-                        <div class="skill-bar" data-width="90%"></div>
+
+                    <!-- Categoria 2: Engenharia de Dados & Back-End -->
+                    <div class="skills-category">
+                        <h3><i class="fa-solid fa-database"></i> Engenharia & Back-End</h3>
+                        <div class="skill_content">
+                            <h3><span><i class="fa-brands fa-node-js"></i> Node.js</span> <span>60%</span></h3>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar" data-width="60%"></div>
+                            </div>
+                        </div>
+                        <div class="skill_content">
+                            <h3><span><i class="fa-solid fa-gears"></i> Processos ETL</span> <span>75%</span></h3>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar" data-width="75%"></div>
+                            </div>
+                        </div>
+                        <div class="skill_content">
+                            <h3><span><i class="fa-solid fa-cloud"></i> Arquitetura em Nuvem</span> <span>65%</span></h3>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar" data-width="65%"></div>
+                            </div>
+                        </div>
+                        <div class="skill_content">
+                            <h3><span><i class="fa-solid fa-chart-line"></i> Análise de Dados</span> <span>80%</span></h3>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar" data-width="80%"></div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="skill_content">
-                    <h3>JavaScript <span>80%</span></h3>
-                    <div class="skill-bar-container">
-                        <div class="skill-bar" data-width="80%"></div>
-                    </div>
-                </div>
-                <div class="skill_content">
-                    <h3>Node Js <span>60%</span></h3>
-                    <div class="skill-bar-container">
-                        <div class="skill-bar" data-width="60%"></div>
-                    </div>
-                </div>
-                <div class="skill_content">
-                    <h3>React <span>50%</span></h3>
-                    <div class="skill-bar-container">
-                        <div class="skill-bar" data-width="50%"></div>
-                    </div>
-                </div>
-                <div class="skill_content">
-                    <h3>Figma (UX/UI) <span>85%</span></h3>
-                    <div class="skill-bar-container">
-                        <div class="skill-bar" data-width="85%"></div>
-                    </div>
-                </div>
-                <div class="skill_content">
-                    <h3>Prototipagem de Interfaces <span>90%</span></h3>
-                    <div class="skill-bar-container">
-                        <div class="skill-bar" data-width="90%"></div>
-                    </div>
-                </div>
-                <div class="skill_content">
-                    <h3>TypeScript <span>70%</span></h3>
-                    <div class="skill-bar-container">
-                        <div class="skill-bar" data-width="70%"></div>
-                    </div>
-                </div>
-                <div class="skill_content">
-                    <h3>Tailwind / Bootstrap <span>80%</span></h3>
-                    <div class="skill-bar-container">
-                        <div class="skill-bar" data-width="80%"></div>
+
+                    <!-- Categoria 3: UX/UI Design -->
+                    <div class="skills-category">
+                        <h3><i class="fa-sharp fa-solid fa-palette"></i> UX/UI Design</h3>
+                        <div class="skill_content">
+                            <h3><span><i class="fa-brands fa-figma"></i> Figma (UX/UI)</span> <span>85%</span></h3>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar" data-width="85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill_content">
+                            <h3><span><i class="fa-solid fa-sitemap"></i> Prototipagem</span> <span>90%</span></h3>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar" data-width="90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill_content">
+                            <h3><span><i class="fa-solid fa-user-check"></i> Testes de Usabilidade</span> <span>80%</span></h3>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar" data-width="80%"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -257,25 +292,44 @@
         </div>
         <div class="projects_storage">
             <ul aria-label="Navegação de projetos">
-                <li id="design"><a href="http://www.colegiogrillimagalhaes.com.br/" target="_blank"><img
-                            src="img/Projects/img_1.png" alt="Imagem do projeto"></a></li>
-                <li id="design"><a href="https://www.colegiosaofranciscotaboao.com.br/" target="_blank"><img
-                            src="img/Projects/img_2.png" alt="Imagem do projeto"></a></li>
-                <li id="graphic"><a href="https://www.colegioitaquera.com.br/" target="_blank"><img
-                            src="img/Projects/img_3.png" alt="Imagem do projeto"></a></li>
-                <li id="graphic"><a href="#" target="_blank"><img src="img/Projects/img_1.png"
-                            alt="Imagem do projeto"></a></li>
-                <li id="webSite"><a href="#" target="_blank"><img src="img/Projects/img_2.png"
-                            alt="Imagem do projeto"></a></li>
-                <li id="webSite"><a href="#" target="_blank"><img src="img/Projects/img_3.png"
-                            alt="Imagem do projeto"></a></li>
-                <li id="webSite"><a href="#" target="_blank"><img src="img/Projects/img_1.png"
-                            alt="Imagem do projeto"></a></li>
-                <li id="webSite"><a href="#" target="_blank"><img src="img/Projects/img_2.png"
-                            alt="Imagem do projeto"></a></li>
+                <!-- Projeto 1 -->
+                <li class="project-card design webSite active">
+                    <a href="http://www.colegiogrillimagalhaes.com.br/" target="_blank" class="project-card-link">
+                        <div class="project-img-container">
+                            <img src="img/Projects/img_1.png" alt="Colégio Grilli Magalhães">
+                        </div>
+                        <div class="project-info">
+                            <h3>Colégio Grilli</h3>
+                            <p>Site Desenvolvido por mim, quando trabalhava pela empressa rabbit.</p>
+                            <div class="project-tags">
+                                <span class="tag">HTML</span>
+                                <span class="tag">CSS</span>
+                                <span class="tag">JavaScript</span>
+                                
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <!-- Projeto 2 -->
+                <li class="project-card design webSite active">
+                    <a href="https://www.colegiosaofranciscotaboao.com.br/" target="_blank" class="project-card-link">
+                        <div class="project-img-container">
+                            <img src="img/Projects/img_2.png" alt="Colégio São Francisco Taboão">
+                        </div>
+                        <div class="project-info">
+                            <h3>São Francisco</h3>
+                            <p>Site Desenvolvido por mim, quando trabalhava pela empressa rabbit.</p>
+                            <div class="project-tags">
+                                <span class="tag">HTML</span>
+                                <span class="tag">CSS</span>
+                                <span class="tag">JavaScript</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
             </ul>
         </div>
-        <a href="#" id="link">Mais Projetos em Breve</a>
+        <a href="https://github.com/yagoreis1622" id="link" target="_blank">Mais Projetos no GitHub</a>
     </section>
 
     <section class="contact-section reveal" id="contato">
@@ -283,11 +337,10 @@
             <h1>Contato</h1>
             <p>Vamos conversar? Mande uma mensagem para mim!</p>
         </div>
-        <form class="contact-form" action="https://api.whatsapp.com/send?phone=55011953937222" method="GET"
-            target="_blank">
-            <input type="text" placeholder="Seu Nome" required>
-            <input type="email" placeholder="Seu E-mail" required>
-            <textarea rows="5" placeholder="Sua Mensagem (opcional)"></textarea>
+        <form class="contact-form" id="whatsapp-form">
+            <input type="text" id="form-name" placeholder="Seu Nome" required>
+            <input type="email" id="form-email" placeholder="Seu E-mail" required>
+            <textarea id="form-message" rows="5" placeholder="Escreva sua mensagem aqui..." required></textarea>
             <button type="submit">Enviar Mensagem via WhatsApp</button>
         </form>
     </section>
