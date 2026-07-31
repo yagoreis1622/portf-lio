@@ -357,6 +357,59 @@ header .navegacao-primaria li a {
     border: 1px solid var(--border-color);
 }
 
+.project-links {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 5px;
+}
+
+.project-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    color: var(--text-color) !important;
+    transition: all 0.25s ease;
+}
+
+.project-link-btn--secondary {
+    background-color: transparent;
+}
+
+.project-link-btn--secondary:hover {
+    background-color: var(--bg-card);
+    border-color: var(--text-muted);
+}
+
+.project-link-btn:not(.project-link-btn--secondary) {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.project-link-btn:not(.project-link-btn--secondary):hover {
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+}
+
+/* Estilo temporário: indica visualmente que o link ainda não foi preenchido.
+   Remova a classe "project-link-btn--pending" do HTML assim que atualizar o href. */
+.project-link-btn--pending {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.project-link-btn--pending::after {
+    content: ' (em breve)';
+    font-size: 0.75rem;
+    font-weight: 400;
+    opacity: 0.8;
+}
+
 
 
 #link {
@@ -449,5 +502,18 @@ header .navegacao-primaria li a {
 @media (max-width: 768px) {
     .skills-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+/* 10. Mobile menu button visibility fix */
+.menu-toggle-btn {
+    display: none;
+}
+
+@media (max-width: 992px) {
+    .menu-toggle-btn {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
     }
 }

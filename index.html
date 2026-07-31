@@ -42,7 +42,9 @@
             <button id="theme-toggle" class="theme-toggle-btn" aria-label="Alternar tema" style="background: transparent; border: none; color: var(--text-color, #fff); font-size: 1.3rem; cursor: pointer; transition: color 0.3s ease; padding: 5px;">
                 <i class="fa-solid fa-moon"></i>
             </button>
-            <i class="fa-solid fa-bars"></i>
+            <button id="menu-toggle" class="menu-toggle-btn" aria-label="Abrir menu de navegação" aria-expanded="false" style="background: transparent; border: none; color: var(--text-color, #fff); font-size: 1.5rem; cursor: pointer; padding: 5px;">
+                <i class="fa-solid fa-bars"></i>
+            </button>
         </nav>
     </header>
     <section aria-label="seção curriculo download Yago" class="section-div reveal">
@@ -326,6 +328,32 @@
                             </div>
                         </div>
                     </a>
+                </li>
+                <!-- Projeto 3: Commitboard (projeto pessoal em React) -->
+                <li class="project-card webSite active">
+                    <div class="project-card-link">
+                        <div class="project-img-container">
+                            <img src="img/Projects/img_commitboard.png" alt="Commitboard - kanban board em React">
+                        </div>
+                        <div class="project-info">
+                            <h3>Commitboard</h3>
+                            <p>Projeto pessoal: kanban board com tema inspirado em git-flow, drag and drop e persistência local.</p>
+                            <div class="project-tags">
+                                <span class="tag">React</span>
+                                <span class="tag">Vite</span>
+                                <span class="tag">JavaScript</span>
+                            </div>
+                            <div class="project-links">
+                                <!-- TODO: troque o href abaixo pela URL do deploy (ex: Vercel) assim que publicar -->
+                                <a href="https://commitboard.vercel.app/" class="project-link-btn" target="_blank" rel="noopener">
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Ver ao vivo
+                                </a>
+                                <a href="https://github.com/yagoreis1622/commitboard" class="project-link-btn project-link-btn--secondary" target="_blank" rel="noopener">
+                                    <i class="fa-brands fa-github"></i> Código
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </div>

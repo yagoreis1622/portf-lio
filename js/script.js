@@ -40,13 +40,32 @@ writeTitle();
 
 // 2. Menu Mobile
 function menuMobile(){
-    const activeMenu = document.querySelector('.fa-bars');
+    const menuBtn = document.getElementById('menu-toggle');
+    const icon = menuBtn ? menuBtn.querySelector('i') : null;
     const navMenu = document.querySelector('header .navegacao-primaria');
-    if(!activeMenu || !navMenu) return;
-    
-    activeMenu.addEventListener('click',()=>{
-        activeMenu.classList.toggle('fa-x');
-        navMenu.classList.toggle('ativado');
+    if(!menuBtn || !navMenu) return;
+
+    menuBtn.addEventListener('click', () => {
+        const isOpen = navMenu.classList.toggle('ativado');
+        menuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        menuBtn.setAttribute('aria-label', isOpen ? 'Fechar menu de navegação' : 'Abrir menu de navegação');
+        if (icon) {
+            icon.classList.toggle('fa-bars', !isOpen);
+            icon.classList.toggle('fa-xmark', isOpen);
+        }
+    });
+
+    // Fecha o menu ao clicar em um link (melhora a navegação mobile)
+    navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('ativado');
+            menuBtn.setAttribute('aria-expanded', 'false');
+            menuBtn.setAttribute('aria-label', 'Abrir menu de navegação');
+            if (icon) {
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-xmark');
+            }
+        });
     });
 }
 menuMobile();
@@ -86,6 +105,14 @@ function initProjectFilter(){
     });
 }
 initProjectFilter();
+
+// 3.1 Bloqueia cliques no botão "Ver ao vivo" enquanto o link não for preenchido
+function guardPendingProjectLinks() {
+    document.querySelectorAll('.project-link-btn--pending').forEach((link) => {
+        link.addEventListener('click', (e) => e.preventDefault());
+    });
+}
+guardPendingProjectLinks();
 
 // 4. Alternador de Tema (Dark / Light Mode)
 function initThemeToggle() {
