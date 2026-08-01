@@ -47,6 +47,58 @@
     transform: translateY(0);
 }
 
+/* Staggered reveal for grouped items (feels less "all at once") */
+.project-card.reveal:nth-child(1) { transition-delay: 0s; }
+.project-card.reveal:nth-child(2) { transition-delay: 0.12s; }
+.project-card.reveal:nth-child(3) { transition-delay: 0.24s; }
+.project-card.reveal:nth-child(4) { transition-delay: 0.36s; }
+
+.skills-category.reveal:nth-child(1) { transition-delay: 0s; }
+.skills-category.reveal:nth-child(2) { transition-delay: 0.15s; }
+.skills-category.reveal:nth-child(3) { transition-delay: 0.3s; }
+
+.timeline-item.reveal:nth-child(1) { transition-delay: 0s; }
+.timeline-item.reveal:nth-child(2) { transition-delay: 0.15s; }
+.timeline-item.reveal:nth-child(3) { transition-delay: 0.3s; }
+
+/* Cascading fade-in for skill icons once their category becomes visible */
+.skill-icon-item {
+    opacity: 0;
+    transform: translateY(14px);
+}
+
+.skills-category.active .skill-icon-item {
+    animation: skillIconIn 0.5s ease-out forwards;
+}
+
+.skills-category.active .skill-icon-item:nth-child(1) { animation-delay: 0.05s; }
+.skills-category.active .skill-icon-item:nth-child(2) { animation-delay: 0.1s; }
+.skills-category.active .skill-icon-item:nth-child(3) { animation-delay: 0.15s; }
+.skills-category.active .skill-icon-item:nth-child(4) { animation-delay: 0.2s; }
+.skills-category.active .skill-icon-item:nth-child(5) { animation-delay: 0.25s; }
+.skills-category.active .skill-icon-item:nth-child(6) { animation-delay: 0.3s; }
+
+@keyframes skillIconIn {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .skill-icon-item {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
 /* 3. Glassmorphism Header */
 header {
     position: fixed;
@@ -205,48 +257,43 @@ header .navegacao-primaria li a {
     gap: 10px;
 }
 
-.skill_content {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 10px !important;
+.skill-icons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+    gap: 14px;
     margin-top: 20px;
 }
 
-.skill_content h3 {
+.skill-icon-item {
     display: flex;
-    justify-content: space-between;
-    font-size: 1.1rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 18px 8px;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.skill-icon-item i {
+    font-size: 1.9rem;
+    color: var(--primary-color);
+}
+
+.skill-icon-item span {
+    font-size: 0.82rem;
     color: var(--text-color);
     font-weight: 500;
+    line-height: 1.2;
 }
 
-.skill_content h3 span i {
-    color: var(--primary-color);
-    margin-right: 8px;
-    font-size: 1.2rem;
-}
-
-.skill_content h3 span:last-child {
-    color: var(--primary-color);
-    font-weight: 600;
-}
-
-.skill-bar-container {
-    width: 100%;
-    background-color: var(--bg-color);
-    border-radius: 10px;
-    height: 8px;
-    overflow: hidden;
-    position: relative;
-    border: 1px solid var(--border-color);
-}
-
-.skill-bar {
-    height: 100%;
-    background: linear-gradient(90deg, var(--primary-color), var(--primary-hover));
-    width: 0;
-    border-radius: 10px;
-    transition: width 1.5s ease-in-out;
+.skill-icon-item:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+    box-shadow: 0 8px 20px rgba(220, 53, 69, 0.15);
 }
 
 /* 7. Modern Project Cards styling */

@@ -215,21 +215,3 @@ window.addEventListener('scroll', () => {
         header.classList.remove('scrolled');
     }
 });
-
-// Animate Skill Bars
-function animateSkills() {
-    const skillBars = document.querySelectorAll('.skill-bar');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const width = entry.target.getAttribute('data-width');
-                entry.target.style.width = width;
-            }
-        });
-    }, { threshold: 0.2 });
-
-    skillBars.forEach(bar => {
-        observer.observe(bar);
-    });
-}
-animateSkills();
