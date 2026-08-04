@@ -770,14 +770,26 @@ main .sobre{
 
 @media(max-width: 992px){
 
-    .section-div img {
-        display: none;
+    .section-div {
+        grid-template-columns: 1fr;
+        padding: 40px 24px;
+        gap: 30px;
+        text-align: center;
     }
-    .section-div{
-        background-image: url(../img/photo.png);
-        background-repeat: no-repeat;
-        background-size: cover;
-        
+
+    .section-div div {
+        margin-top: 0;
+        justify-items: center;
+    }
+
+    .section-div img {
+        display: block;
+        max-width: 280px;
+        width: 70%;
+        height: auto;
+        margin: 0 auto;
+        border-radius: 12px;
+        order: -1;
     }
 
     header .navegacao-primaria{
